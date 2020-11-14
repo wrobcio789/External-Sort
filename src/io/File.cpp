@@ -1,7 +1,8 @@
 #include "File.h"
+#include "../config/Locator.h"
 
-File::File(std::string filename)
-	: _fileStream(filename)
+File::File(std::string filename, OpenMode mode)
+	: _fileStream(filename, mode)
 {
 	if (!_fileStream.is_open()) {
 		std::cerr << "File " + filename + " cannot be opened" << std::endl;
@@ -20,9 +21,9 @@ void File::write(const CharBuffer& record)
 	//TODO increment write count
 }
 
-int File::read(CharBuffer& buffer)
+size_t File::read(CharBuffer& buffer)
 {
-	_fileStream.read(buffer, buffer.maxSize);
+	_fileStream.read(buffer.data, buffer.maxSize);
 	return buffer.size = _fileStream.gcount();
 	//TODO: increment reads counter.
 }

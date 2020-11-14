@@ -15,33 +15,33 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="config\LocatorConfigurator.cpp">
+    <ClCompile Include="src\io\printers\FormatedRecordPrinter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="model\RecordComparators.cpp">
+    <ClCompile Include="src\io\printers\PrettyOutput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="model\parsers\StreamRecordParser.cpp">
+    <ClCompile Include="src\io\File.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src\model\RecordComparators.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sorting\ExternalSort.cpp">
+    <ClCompile Include="src\model\parsers\StreamRecordParser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="File.cpp">
+    <ClCompile Include="src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\config\LocatorConfigurator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\sorting\ExternalSort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="model\Record.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="config\LocatorConfigurator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="config\Locator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="model\RecordComparators.h">
@@ -59,11 +59,65 @@
     <ClInclude Include="model\Buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="File.h">
+    <ClInclude Include="src\io\printers\FormatedRecordPrinter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\io\printers\PrettyOutput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\io\printers\SingleRecordPrinter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\io\File.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\model\Buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\model\Record.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\model\RecordComparators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\model\parsers\StreamObjectParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\model\parsers\StreamRecordParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\config\Locator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\config\LocatorConfigurator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\sorting\ExternalSort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="script\data_generator.py" />
+    <None Include="data\input10.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="data\input10000.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="data\input100000.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="data\input500000.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="data\input1000000.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="data\input10000000.bin">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="data\input100000000.bin">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 #pragma once
+#include "StreamObjectParser.h"
 #include "../Record.h"
 
 class StreamRecordParser : public StreamObjectParser<Record> {

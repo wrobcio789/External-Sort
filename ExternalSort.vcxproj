@@ -116,6 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,6 +131,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,25 +141,43 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="File.cpp" />
-    <ClCompile Include="sorting\ExternalSort.cpp" />
-    <ClCompile Include="config\LocatorConfigurator.cpp" />
-    <ClCompile Include="model\RecordComparators.cpp" />
-    <ClCompile Include="model\parsers\StreamRecordParser.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="src\config\LocatorConfigurator.cpp" />
+    <ClCompile Include="src\io\File.cpp" />
+    <ClCompile Include="src\io\printers\FormatedRecordPrinter.cpp" />
+    <ClCompile Include="src\io\printers\PrettyOutput.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\model\parsers\StreamRecordParser.cpp" />
+    <ClCompile Include="src\model\RecordComparators.cpp" />
+    <ClCompile Include="src\sorting\ExternalSort.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="config\Locator.h" />
-    <ClInclude Include="config\LocatorConfigurator.h" />
+    <ClInclude Include="src\config\Locator.h" />
+    <ClInclude Include="src\config\LocatorConfigurator.h" />
     <ClInclude Include="model\Buffer.h" />
-    <ClInclude Include="File.h" />
     <ClInclude Include="sorting\ExternalSort.h" />
     <ClInclude Include="model\Record.h" />
     <ClInclude Include="model\RecordComparators.h" />
     <ClInclude Include="model\parsers\StreamRecordParser.h" />
     <ClInclude Include="model\parsers\StreamObjectParser.h" />
+    <ClInclude Include="src\io\File.h" />
+    <ClInclude Include="src\io\printers\FormatedRecordPrinter.h" />
+    <ClInclude Include="src\io\printers\PrettyOutput.h" />
+    <ClInclude Include="src\io\printers\SingleRecordPrinter.h" />
+    <ClInclude Include="src\model\Buffer.h" />
+    <ClInclude Include="src\model\parsers\StreamObjectParser.h" />
+    <ClInclude Include="src\model\parsers\StreamRecordParser.h" />
+    <ClInclude Include="src\model\Record.h" />
+    <ClInclude Include="src\model\RecordComparators.h" />
+    <ClInclude Include="src\sorting\ExternalSort.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="data\input10.bin" />
+    <None Include="data\input10000.bin" />
+    <None Include="data\input100000.bin" />
+    <None Include="data\input1000000.bin" />
+    <None Include="data\input10000000.bin" />
+    <None Include="data\input100000000.bin" />
+    <None Include="data\input500000.bin" />
     <None Include="script\data_generator.py" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

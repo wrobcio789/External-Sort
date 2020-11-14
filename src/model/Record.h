@@ -1,6 +1,6 @@
 #pragma once
 #include <algorithm>
-#include "parsers/StreamObjectParser.h"
+#include <numeric>
 
 struct Record {
 	static const int Size = 5;
@@ -11,5 +11,9 @@ struct Record {
 
 	Record(int* elements) {
 		std::copy(elements, elements + Size, this->elements);
+	}
+
+	int sum() {
+		return std::accumulate(elements, elements + Size, 0);
 	}
 };
