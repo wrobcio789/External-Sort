@@ -24,6 +24,7 @@ public:
 	std::string prettyInputFilename;
 	std::string prettyOutputFilename;
 
+	std::string tmpFileSuffix;
 	std::unique_ptr<SingleRecordPrinter> recordPrettyPrinterPtr;
 
 

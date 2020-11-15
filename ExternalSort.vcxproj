@@ -141,6 +141,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\sorting\BufferToSeriesSplitter.cpp" />
+    <ClCompile Include="src\io\ConstrainedFile.cpp" />
+    <ClCompile Include="src\sorting\ContignousBufferFiller.cpp" />
     <ClCompile Include="src\config\LocatorConfigurator.cpp" />
     <ClCompile Include="src\io\File.cpp" />
     <ClCompile Include="src\io\printers\FormatedRecordPrinter.cpp" />
@@ -149,8 +152,12 @@
     <ClCompile Include="src\model\parsers\StreamRecordParser.cpp" />
     <ClCompile Include="src\model\RecordComparators.cpp" />
     <ClCompile Include="src\sorting\ExternalSort.cpp" />
+    <ClCompile Include="src\sorting\TapeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\sorting\BufferToSeriesSplitter.h" />
+    <ClInclude Include="src\io\ConstrainedFile.h" />
+    <ClInclude Include="src\sorting\ContignousBufferFiller.h" />
     <ClInclude Include="src\config\Locator.h" />
     <ClInclude Include="src\config\LocatorConfigurator.h" />
     <ClInclude Include="model\Buffer.h" />
@@ -169,6 +176,7 @@
     <ClInclude Include="src\model\Record.h" />
     <ClInclude Include="src\model\RecordComparators.h" />
     <ClInclude Include="src\sorting\ExternalSort.h" />
+    <ClInclude Include="src\sorting\TapeManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\input10.bin" />

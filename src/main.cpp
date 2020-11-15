@@ -11,5 +11,6 @@ int main(int n, char* args[])
     LocatorConfigurator::configure(n, args);
     ExternalSort().Sort();
     PrettyOutput::print();
+
     return 0;
 }

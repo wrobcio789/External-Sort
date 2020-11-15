@@ -1,34 +1,93 @@
 #include "ExternalSort.h"
 #include "../model/Record.h"
 #include "../model/RecordComparators.h"
-#include "../model/Buffer.h"
 #include "../io/File.h"
+#include "BufferToSeriesSplitter.h"
+
+/*struct ContignousBufferFillerComparator {
+	bool operator()(const ContignousBufferFiller& a, const ContignousBufferFiller& b) {
+		static RecordByAverageComparator recordComparator = RecordByAverageComparator();
+		if(a.hasNext)
+		return recordComparator(a.peek(), b.peek());
+	}
+} _contignousBufferFillerComparator;*/
 
 
 ExternalSort::ExternalSort()
 	: _config(Locator::get()) {}
 
-void ExternalSort::_firstStageSort()
+size_t ExternalSort::_firstStageSort(CharBuffer& buffer, TapeManager& tapeManager) const
 {
-	const size_t mainBufferSize = (_config.pageSize * _config.bufferCount/sizeof(Record)) * sizeof(Record);
-	char* mainBufferPtr = new char[mainBufferSize];
-	CharBuffer mainBuffer = CharBuffer(mainBufferPtr, mainBufferSize);
-
-	File inputTape(_config.inputFilename, File::OpenMode::READ);
-	File outputTape(_config.outputFilename, File::OpenMode::WRITE);
+	File* inputTape = tapeManager.getInput();
+	File* outputTape = tapeManager.getOperationalOutput();
 	
+	size_t totalReadBytes = 0;
 	size_t readBytesCount;
 	do {
-		readBytesCount = inputTape.read(mainBuffer);
-		RecordBuffer mainBufferAsRecordsBuffer = mainBuffer.cast<Record>();
+		readBytesCount = inputTape->read(buffer);
+		totalReadBytes += readBytesCount;
+		RecordBuffer bufferAsRecordsBuffer = buffer.cast<Record>();
 
-		std::sort(mainBufferAsRecordsBuffer.data, mainBufferAsRecordsBuffer.data + mainBufferAsRecordsBuffer.size, RecordByAverageComparator());
-		outputTape.write(mainBuffer);
-	} while (readBytesCount == mainBuffer.maxSize);
+		std::sort(bufferAsRecordsBuffer.data, bufferAsRecordsBuffer.data + bufferAsRecordsBuffer.size, RecordByAverageLessComparator());
+		outputTape->write(buffer);
+	} while (readBytesCount == buffer.maxSize);
+
+	return totalReadBytes / sizeof(Record);
+}
+
+void ExternalSort::_secondStageSort(CharBuffer& buffer, size_t recordsCount, TapeManager& tapeManager) const {
+	const size_t mergingBuffersCount = _config.bufferCount - 1;
+	CharBuffer mergingBuffer = CharBuffer(buffer.data, buffer.maxSize - _config.pageSize);
+	RecordBuffer outputBuffer = CharBuffer(mergingBuffer.data + mergingBuffer.maxSize, _config.pageSize, 0).cast<Record>();
+
+	size_t seriesSizeInRecords = buffer.cast<Record>().maxSize;
+	BufferToSeriesSplitter bufferToSeriesSplitter(recordsCount, mergingBuffer);
+
+	while (seriesSizeInRecords < recordsCount) {
+		tapeManager.swap();
+		bufferToSeriesSplitter.setNewTape(tapeManager.getOperationalInput(), seriesSizeInRecords);
+		while (bufferToSeriesSplitter.hasNext()) {
+			std::vector<ContignousBufferFiller>& splitBuffers = bufferToSeriesSplitter.splitNext();
+			std::make_heap(splitBuffers.begin(), splitBuffers.end());
+			while (!splitBuffers.empty()) {
+				ContignousBufferFiller singleBuffer = splitBuffers.front();
+				std::pop_heap(splitBuffers.begin(), splitBuffers.end());
+				splitBuffers.pop_back();
+
+				outputBuffer.add(singleBuffer.pop());
+				if (outputBuffer.isFull()) {
+					tapeManager.getOperationalOutput()->write(outputBuffer.cast<char>());
+					outputBuffer.size = 0;
+				}
+
+				if (singleBuffer.hasNext()) {
+					splitBuffers.push_back(singleBuffer);
+					std::push_heap(splitBuffers.begin(), splitBuffers.end());
+				}
+			}
+		}
+		if (!outputBuffer.isEmpty()) {
+			tapeManager.getOperationalOutput()->write(outputBuffer.cast<char>());
+			outputBuffer.size = 0;
+		}
+		//break;
+		seriesSizeInRecords *= mergingBuffersCount;
+	}
+
+	
 }
 
 
 void ExternalSort::Sort()
 {
-	_firstStageSort();
+	const size_t mainBufferSize = (_config.pageSize * _config.bufferCount / sizeof(Record)) * sizeof(Record);
+	char* mainBufferPtr = new char[mainBufferSize];
+	CharBuffer mainBuffer = CharBuffer(mainBufferPtr, mainBufferSize);
+
+	TapeManager tapeManager;
+	size_t totalRecordsCount = _firstStageSort(mainBuffer, tapeManager);
+	_secondStageSort(mainBuffer, totalRecordsCount, tapeManager);
+
+	delete[] mainBufferPtr;
 }
+
