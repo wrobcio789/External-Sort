@@ -4,7 +4,7 @@
 BufferToSeriesSplitter::BufferToSeriesSplitter(size_t recordsCount, CharBuffer& buffer)
 	:	_totalRecordsCount(recordsCount),
 		_buffer(buffer),
-		_config(Locator::get())
+		_config(Locator::get().config)
 {
 	_buffers.reserve(_config.bufferCount - 1);
 }

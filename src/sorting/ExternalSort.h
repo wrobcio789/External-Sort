@@ -10,7 +10,7 @@
 class ExternalSort
 {
 private:
-	const Locator& _config;
+	const Config& _config;
 
 	size_t _firstStageSort(CharBuffer& buffer, TapeManager& tapeManager) const;
 

@@ -1,16 +1,19 @@
 #include "LocatorConfigurator.h"
+#include "../sorting/Sorting.h"
 
 void LocatorConfigurator::configure(int argsCount, char* args[]) {
 	Locator& locator = Locator::get();
 
-	locator.bufferCount = 100;
-	locator.pageSize = 4096;
-	locator.inputFilename = "./data/input1000000.bin";
-	locator.outputFilename = "./data/output1000000.bin";
+	const ArgsParser argsParser(argsCount, args);
+	_registerProgram(locator, argsParser);
+}
 
-	locator.prettyInputFilename = "./data/pretty_input1000000.txt";
-	locator.prettyOutputFilename = "./data/pretty_output1000000.txt";
-
-	locator.tmpFileSuffix = ".tmp";
-	locator.recordPrettyPrinterPtr = std::make_unique<FormatedRecordPrinter>();
+void LocatorConfigurator::_registerProgram(Locator& locator, const ArgsParser& argsParser) {
+	const std::string& subprogramName = argsParser.getSubroutineName();
+	if (subprogramName == "sort")
+		locator.program = std::make_unique<Sorting>(argsParser);
+	else if (subprogramName == "generate")
+		return;
+	else if (subprogramName == "userinput")
+		return;
 }

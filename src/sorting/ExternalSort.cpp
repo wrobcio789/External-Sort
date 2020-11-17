@@ -4,17 +4,8 @@
 #include "../io/File.h"
 #include "BufferToSeriesSplitter.h"
 
-/*struct ContignousBufferFillerComparator {
-	bool operator()(const ContignousBufferFiller& a, const ContignousBufferFiller& b) {
-		static RecordByAverageComparator recordComparator = RecordByAverageComparator();
-		if(a.hasNext)
-		return recordComparator(a.peek(), b.peek());
-	}
-} _contignousBufferFillerComparator;*/
-
-
 ExternalSort::ExternalSort()
-	: _config(Locator::get()) {}
+	: _config(Locator::get().config) {}
 
 size_t ExternalSort::_firstStageSort(CharBuffer& buffer, TapeManager& tapeManager) const
 {

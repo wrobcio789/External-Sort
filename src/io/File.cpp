@@ -4,7 +4,7 @@
 #include "../config/Locator.h"
 
 bool _isExacltyOneDiskPageRead(size_t begin, size_t readSize) {
-	size_t diskPageSize = Locator::get().pageSize;
+	size_t diskPageSize = Locator::get().config.pageSize;
 
 	size_t beginDiskPageIndex = begin / diskPageSize;
 	size_t endDiskPageIndex = (begin + readSize - 1) / diskPageSize;

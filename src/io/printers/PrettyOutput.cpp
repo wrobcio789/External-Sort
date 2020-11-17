@@ -2,25 +2,19 @@
 #include "../../config//Locator.h"
 
 
-void PrettyOutput::print()
+void PrettyOutput::print(const std::string& filename)
 {
-	const Locator& config = Locator::get();
-	if (config.prettyInputFilename.empty())
-		return;
-
+	const Config& config = Locator::get().config;
+	
+	std::string prettyFilename = filename + config.prettyFileSuffix;
 	const SingleRecordPrinter& recordPrinter = *(config.recordPrettyPrinterPtr);
 
-	std::ofstream outputOfOutput(config.prettyOutputFilename);
-	std::ifstream inputOfOutput(config.outputFilename, std::ios_base::binary);
 
-	if (inputOfOutput.is_open() && outputOfOutput.is_open())
-		_printUnchecked(recordPrinter, inputOfOutput, outputOfOutput);
+	std::ofstream output(prettyFilename);
+	std::ifstream input(filename, std::ios_base::binary);
 
-	std::ofstream outputOfInput(config.prettyInputFilename);
-	std::ifstream inputOfInput(config.inputFilename, std::ios_base::binary);
-
-	if (inputOfInput.is_open() && outputOfInput.is_open())
-		_printUnchecked(recordPrinter, inputOfInput, outputOfInput);
+	if (output.is_open() && input.is_open())
+		_printUnchecked(recordPrinter, input, output);
 }
 
 void PrettyOutput::_printUnchecked(const SingleRecordPrinter& recordPrinter, std::ifstream& input, std::ofstream& output) {

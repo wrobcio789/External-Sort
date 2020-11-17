@@ -7,7 +7,7 @@
 class BufferToSeriesSplitter
 {
 private:
-	const Locator& _config;
+	const Config& _config;
 
 	File* _inputFilePtr;
 	size_t _totalRecordsCount;

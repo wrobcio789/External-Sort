@@ -5,7 +5,7 @@
 class TapeManager
 {
 private:
-	Locator& _config;
+	const Config& _config;
 
 	File* _input;
 	File* _operationalInput;

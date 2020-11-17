@@ -122,6 +122,10 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -139,8 +143,14 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\sorting\Sorting.cpp" />
+    <ClCompile Include="src\config\ArgsParser.cpp" />
     <ClCompile Include="src\sorting\BufferToSeriesSplitter.cpp" />
     <ClCompile Include="src\io\ConstrainedFile.cpp" />
     <ClCompile Include="src\sorting\ContignousBufferFiller.cpp" />
@@ -155,6 +165,8 @@
     <ClCompile Include="src\sorting\TapeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\sorting\Sorting.h" />
+    <ClInclude Include="src\config\ArgsParser.h" />
     <ClInclude Include="src\sorting\BufferToSeriesSplitter.h" />
     <ClInclude Include="src\io\ConstrainedFile.h" />
     <ClInclude Include="src\sorting\ContignousBufferFiller.h" />
@@ -177,6 +189,7 @@
     <ClInclude Include="src\model\RecordComparators.h" />
     <ClInclude Include="src\sorting\ExternalSort.h" />
     <ClInclude Include="src\sorting\TapeManager.h" />
+    <ClInclude Include="src\common\Subprogram.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\input10.bin" />

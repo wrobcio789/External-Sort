@@ -2,7 +2,7 @@
 #include <filesystem>
 
 TapeManager::TapeManager()
-	:	_config(Locator::get())
+	:	_config(Locator::get().config)
 {
 	_input = new File(_config.inputFilename, File::OpenMode::READ);
 	_operationalInput = new File(_config.outputFilename + ".1" + _config.tmpFileSuffix, File::OpenMode::READ_WRITE);
