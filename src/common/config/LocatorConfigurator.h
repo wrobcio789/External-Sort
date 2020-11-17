@@ -1,7 +1,6 @@
 #pragma once
 #include "Locator.h"
 #include "../io/printers/FormatedRecordPrinter.h"
-#include "../model/parsers/StreamRecordParser.h"
 #include "ArgsParser.h"
 
 class LocatorConfigurator

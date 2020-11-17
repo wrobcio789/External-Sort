@@ -1,8 +1,6 @@
 #pragma once
-#include "../model/Buffer.h"
-#include "../config/Locator.h"
-#include "../io/ConstrainedFile.h"
-#include "../model/RecordComparators.h"
+#include "../common/model/Buffer.h"
+#include "../common/io/ConstrainedFile.h"
 
 class ContignousBufferFiller
 {

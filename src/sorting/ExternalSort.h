@@ -3,8 +3,6 @@
 #include <algorithm>
 #include <vector>
 #include "ContignousBufferFiller.h"
-#include "../config/Locator.h"
-#include "../model/Buffer.h"
 #include "TapeManager.h"
 
 class ExternalSort

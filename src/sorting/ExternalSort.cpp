@@ -1,7 +1,7 @@
 #include "ExternalSort.h"
-#include "../model/Record.h"
-#include "../model/RecordComparators.h"
-#include "../io/File.h"
+#include "../common/model/Record.h"
+#include "../common/model/RecordComparators.h"
+#include "../common/io/File.h"
 #include "BufferToSeriesSplitter.h"
 
 ExternalSort::ExternalSort()

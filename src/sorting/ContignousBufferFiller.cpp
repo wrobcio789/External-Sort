@@ -1,4 +1,5 @@
 #include "ContignousBufferFiller.h"
+#include "../common/model/RecordComparators.h"
 #include <cassert>
 
 ContignousBufferFiller::ContignousBufferFiller(RecordBuffer buffer, ConstrainedFile file)

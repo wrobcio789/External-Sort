@@ -1,7 +1,7 @@
 #include "Sorting.h"
-#include "../io/printers/FormatedRecordPrinter.h"
 #include "ExternalSort.h"
-#include "../io/printers/PrettyOutput.h"
+#include "../common/io/printers/PrettyOutput.h"
+#include "../common/io/printers/FormatedRecordPrinter.h"
 
 Sorting::Sorting(const ArgsParser& args)
 	:	_config(Locator::get().config)

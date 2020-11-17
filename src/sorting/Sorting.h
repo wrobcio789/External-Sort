@@ -1,7 +1,7 @@
 #pragma once
 #include "../common/Subprogram.h"
-#include "../config/ArgsParser.h"
-#include "../config/Locator.h"
+#include "../common/config/ArgsParser.h"
+#include "../common/config/Locator.h"
 
 class Sorting : public Subprogram
 {

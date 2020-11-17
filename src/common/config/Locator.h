@@ -3,7 +3,7 @@
 #include <memory>
 #include "../model/Record.h"
 #include "../io/printers/SingleRecordPrinter.h"
-#include "../common/Subprogram.h"
+#include "../Subprogram.h"
 
 class Config {
 

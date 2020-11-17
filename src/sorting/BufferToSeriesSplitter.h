@@ -1,8 +1,9 @@
 #pragma once
 #include <vector>
-#include "../config/Locator.h"
-#include "../io/File.h"
 #include "ContignousBufferFiller.h"
+#include "../common/config/Locator.h"
+#include "../common/io/File.h"
+#include "../common/io/ConstrainedFile.h"
 
 class BufferToSeriesSplitter
 {

@@ -1,5 +1,5 @@
 #include "LocatorConfigurator.h"
-#include "../sorting/Sorting.h"
+#include "../../sorting/Sorting.h"
 
 void LocatorConfigurator::configure(int argsCount, char* args[]) {
 	Locator& locator = Locator::get();

@@ -15,25 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\io\printers\FormatedRecordPrinter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\io\printers\PrettyOutput.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\io\File.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\model\RecordComparators.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\model\parsers\StreamRecordParser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\config\LocatorConfigurator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\sorting\ExternalSort.cpp">
@@ -42,19 +24,34 @@
     <ClCompile Include="src\sorting\ContignousBufferFiller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\io\ConstrainedFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\sorting\BufferToSeriesSplitter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\sorting\TapeManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\config\ArgsParser.cpp">
+    <ClCompile Include="src\sorting\Sorting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\sorting\Sorting.cpp">
+    <ClCompile Include="src\common\config\ArgsParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\common\config\LocatorConfigurator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\common\io\printers\FormatedRecordPrinter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\common\io\printers\PrettyOutput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\common\io\ConstrainedFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\common\io\File.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\common\model\RecordComparators.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,49 +71,10 @@
     <ClInclude Include="sorting\ExternalSort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="model\Buffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\io\printers\FormatedRecordPrinter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\io\printers\PrettyOutput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\io\printers\SingleRecordPrinter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\io\File.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\model\Buffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\model\Record.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\model\RecordComparators.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\model\parsers\StreamObjectParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\model\parsers\StreamRecordParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\config\Locator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\config\LocatorConfigurator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\sorting\ExternalSort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\sorting\ContignousBufferFiller.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\io\ConstrainedFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\sorting\BufferToSeriesSplitter.h">
@@ -125,13 +83,43 @@
     <ClInclude Include="src\sorting\TapeManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\config\ArgsParser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\common\Subprogram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\sorting\Sorting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\common\config\ArgsParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\common\config\Locator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\common\config\LocatorConfigurator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\common\io\printers\FormatedRecordPrinter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\common\io\printers\PrettyOutput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\common\io\printers\SingleRecordPrinter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\common\io\ConstrainedFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\common\io\File.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\common\model\Buffer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\common\model\Record.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\common\model\RecordComparators.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

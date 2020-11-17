@@ -1,6 +1,6 @@
 #pragma once
-#include "../config/Locator.h"
-#include "../io/File.h"
+#include "../common/config/Locator.h"
+#include "../common/io/File.h"
 
 class TapeManager
 {
