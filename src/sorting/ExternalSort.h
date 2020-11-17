@@ -11,16 +11,19 @@ class ExternalSort
 {
 private:
 	const Config& _config;
+	CharBuffer _mainBuffer;
+	TapeManager _tapeManager;
 
-	size_t _firstStageSort(CharBuffer& buffer, TapeManager& tapeManager) const;
-	void _createSingleSeries(File* inputTape, File* outputTape, CharBuffer& buffer) const;
+	size_t _firstStageSort();
+	void _createSingleSeries();
 
-	void _secondStageSort(CharBuffer& buffer, size_t recordsCount, TapeManager& tapeManager) const;
-	void _mergeSeries(BufferToSeriesSplitter & splitter, TapeManager& tapeManager, BufferedFileWriter<Record>& outputBuffer, size_t seriesSizeInRecords) const;
-	void _pickNextToOutput(std::vector<ContignousBufferFiller>& splitBuffers, TapeManager& tapeManager, BufferedFileWriter<Record>& recordWriter) const;
+	void _secondStageSort(size_t recordsCount);
+	void _mergeSeries(BufferToSeriesSplitter& splitter, RecordBuffer& recordWriter, size_t seriesSizeInRecords);
+	void _pickNextToOutput(std::vector<ContignousBufferFiller>& splitBuffers,  BufferedFileWriter<Record>& recordWriter);
 
 public:
 	ExternalSort();
+	~ExternalSort();
 
 	void Sort();
 };

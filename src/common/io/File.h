@@ -1,7 +1,19 @@
 #pragma once
 #include <iostream>
 #include <fstream>
+#include <exception>
 #include "../model/Buffer.h"
+
+class CannotOpenFileException : public std::exception {
+	const std::string _message;
+
+public:
+	CannotOpenFileException(std::string filename) : _message("Cannot open file: " + filename) {}
+
+	const char* what() const override {
+		return _message.c_str();
+	}
+};
 
 class File
 {

@@ -3,7 +3,7 @@
 #include <cassert>
 #include "../config/Locator.h"
 
-bool _isExacltyOneDiskPageRead(size_t begin, size_t readSize) {
+bool _isExactlyOneDiskPageRead(size_t begin, size_t readSize) {
 	size_t diskPageSize = Locator::get().config.pageSize;
 
 	size_t beginDiskPageIndex = begin / diskPageSize;
@@ -15,8 +15,7 @@ File::File(std::string filename, OpenMode mode)
 	: _name(filename), _fileStream(filename, mode)
 {
 	if (!_fileStream.is_open()) {
-		std::cerr << "File " + filename + " cannot be opened" << std::endl;
-		exit(1);
+		throw CannotOpenFileException(filename);
 	}
 }
 
@@ -44,7 +43,7 @@ size_t File::read(CharBuffer& buffer)
 
 size_t File::rangedRead(CharBuffer& buffer, size_t begin, size_t end) {
 	const size_t readSize = std::min(buffer.maxSize, end - begin);
-	assert(_isExacltyOneDiskPageRead(begin, readSize));
+	assert(_isExactlyOneDiskPageRead(begin, readSize));
 
 	_fileStream.clear();
 	_fileStream.seekg(begin);
