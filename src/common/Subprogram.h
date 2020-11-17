@@ -17,6 +17,5 @@ class Subprogram
 {
 public: 
 	virtual void run() = 0;
-
 };
 

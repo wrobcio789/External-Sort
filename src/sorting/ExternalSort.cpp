@@ -13,17 +13,19 @@ size_t ExternalSort::_firstStageSort(CharBuffer& buffer, TapeManager& tapeManage
 	File* outputTape = tapeManager.getOperationalOutput();
 	
 	size_t totalReadBytes = 0;
-	size_t readBytesCount;
 	do {
-		readBytesCount = inputTape->read(buffer);
-		totalReadBytes += readBytesCount;
-		RecordBuffer bufferAsRecordsBuffer = buffer.cast<Record>();
-
-		std::sort(bufferAsRecordsBuffer.data, bufferAsRecordsBuffer.data + bufferAsRecordsBuffer.size, RecordByAverageLessComparator());
-		outputTape->write(buffer);
-	} while (readBytesCount == buffer.maxSize);
+		_createSingleSeries(inputTape, outputTape, buffer);
+		totalReadBytes += buffer.size;
+	} while (buffer.size == buffer.maxSize);
 
 	return totalReadBytes / sizeof(Record);
+}
+
+void ExternalSort::_createSingleSeries(File* inputTape, File* outputTape, CharBuffer& buffer) const{
+	inputTape->read(buffer);
+	RecordBuffer bufferAsRecordsBuffer = buffer.cast<Record>();
+	std::sort(bufferAsRecordsBuffer.data, bufferAsRecordsBuffer.data + bufferAsRecordsBuffer.size, RecordByAverageLessComparator());
+	outputTape->write(buffer);
 }
 
 void ExternalSort::_secondStageSort(CharBuffer& buffer, size_t recordsCount, TapeManager& tapeManager) const {
@@ -37,37 +39,42 @@ void ExternalSort::_secondStageSort(CharBuffer& buffer, size_t recordsCount, Tap
 	while (seriesSizeInRecords < recordsCount) {
 		tapeManager.swap();
 		bufferToSeriesSplitter.setNewTape(tapeManager.getOperationalInput(), seriesSizeInRecords);
-		while (bufferToSeriesSplitter.hasNext()) {
-			std::vector<ContignousBufferFiller>& splitBuffers = bufferToSeriesSplitter.splitNext();
-			std::make_heap(splitBuffers.begin(), splitBuffers.end());
-			while (!splitBuffers.empty()) {
-				ContignousBufferFiller singleBuffer = splitBuffers.front();
-				std::pop_heap(splitBuffers.begin(), splitBuffers.end());
-				splitBuffers.pop_back();
-
-				outputBuffer.add(singleBuffer.pop());
-				if (outputBuffer.isFull()) {
-					tapeManager.getOperationalOutput()->write(outputBuffer.cast<char>());
-					outputBuffer.size = 0;
-				}
-
-				if (singleBuffer.hasNext()) {
-					splitBuffers.push_back(singleBuffer);
-					std::push_heap(splitBuffers.begin(), splitBuffers.end());
-				}
-			}
-		}
+		_mergeSeries(bufferToSeriesSplitter, tapeManager, outputBuffer, seriesSizeInRecords);
 		if (!outputBuffer.isEmpty()) {
 			tapeManager.getOperationalOutput()->write(outputBuffer.cast<char>());
 			outputBuffer.size = 0;
 		}
-		//break;
 		seriesSizeInRecords *= mergingBuffersCount;
 	}
-
-	
 }
 
+void ExternalSort::_mergeSeries(BufferToSeriesSplitter& splitter, TapeManager& tapeManager, RecordBuffer& outputBuffer, size_t seriesSizeInRecords) const {
+	splitter.setNewTape(tapeManager.getOperationalInput(), seriesSizeInRecords);
+	while (splitter.hasNext()) {
+		std::vector<ContignousBufferFiller>& splitBuffers = splitter.splitNext();
+		std::make_heap(splitBuffers.begin(), splitBuffers.end());
+		while (!splitBuffers.empty()) {
+			_pickNextToOutput(splitBuffers, tapeManager, outputBuffer);
+		}
+	}
+}
+
+void ExternalSort::_pickNextToOutput(std::vector<ContignousBufferFiller>& splitBuffers, TapeManager& tapeManager, RecordBuffer& outputBuffer) const {
+	ContignousBufferFiller singleBuffer = splitBuffers.front();
+	std::pop_heap(splitBuffers.begin(), splitBuffers.end());
+	splitBuffers.pop_back();
+
+	outputBuffer.add(singleBuffer.pop());
+	if (outputBuffer.isFull()) {
+		tapeManager.getOperationalOutput()->write(outputBuffer.cast<char>());
+		outputBuffer.size = 0;
+	}
+
+	if (singleBuffer.hasNext()) {
+		splitBuffers.push_back(singleBuffer);
+		std::push_heap(splitBuffers.begin(), splitBuffers.end());
+	}
+}
 
 void ExternalSort::Sort()
 {

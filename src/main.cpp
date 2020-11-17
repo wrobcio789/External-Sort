@@ -1,7 +1,7 @@
 #include <iostream>
 #include <filesystem>
-#include "io/printers/PrettyOutput.h"
-#include "config/LocatorConfigurator.h"
+#include "common/io/printers/PrettyOutput.h"
+#include "common/config/LocatorConfigurator.h"
 #include "sorting/ExternalSort.h"
 
 int main(int n, char* args[])

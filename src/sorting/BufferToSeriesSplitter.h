@@ -10,13 +10,13 @@ class BufferToSeriesSplitter
 private:
 	const Config& _config;
 
-	File* _inputFilePtr;
+	File* _inputFilePtr = nullptr;
 	size_t _totalRecordsCount;
 
 	CharBuffer& _buffer;
-	size_t _seriesSize;
+	size_t _seriesSize = 0;
 
-	size_t _currentSeriesIndex;
+	size_t _currentSeriesIndex = 0;
 	std::vector<ContignousBufferFiller> _buffers;
 
 	RecordBuffer _createNthRecordBuffer(size_t n);
