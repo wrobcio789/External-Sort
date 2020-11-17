@@ -164,6 +164,7 @@
     <ClCompile Include="src\sorting\TapeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\common\io\BufferedFileWriter.h" />
     <ClInclude Include="src\sorting\Sorting.h" />
     <ClInclude Include="src\common\config\ArgsParser.h" />
     <ClInclude Include="src\sorting\BufferToSeriesSplitter.h" />
