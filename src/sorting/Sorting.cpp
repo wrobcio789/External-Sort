@@ -15,7 +15,7 @@ Sorting::Sorting(const ArgsParser& args)
 	_config.shouldPrettyPrint = args.isFlagSet("pretty");
 
 	_config.bufferCount = args.getValue("buffers").asLongLong(100);
-	_config.pageSize = args.getValue("page").asLongLong(4096);
+	_config.pageSize = args.getValue("page").asLongLong(4000);
 	_config.inputFilename = args.getValue("input").asString();
 	_config.outputFilename = args.getValue("output").asString();
 
