@@ -43,3 +43,8 @@ void TapeManager::swap()
 	_operationalInput->reset();
 	_operationalOutput->reset();
 }
+
+void TapeManager::flush() {
+	_operationalInput->flush();
+	_operationalOutput->flush();
+}

@@ -16,6 +16,9 @@ private:
 public:
 
 	BufferedFileWriter(File* file, Buffer<T>& buffer) : _file(file), _buffer(buffer){}
+	~BufferedFileWriter() {
+		flush();
+	}
 
 	void write(T value) {
 		_buffer.add(value);

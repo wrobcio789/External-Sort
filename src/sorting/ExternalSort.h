@@ -11,6 +11,8 @@ class ExternalSort
 {
 private:
 	const Config& _config;
+	Statistics& _statistics;
+
 	CharBuffer _mainBuffer;
 	TapeManager _tapeManager;
 
@@ -21,6 +23,7 @@ private:
 	void _mergeSeries(BufferToSeriesSplitter& splitter, RecordBuffer& recordWriter, size_t seriesSizeInRecords);
 	void _pickNextToOutput(std::vector<ContignousBufferFiller>& splitBuffers,  BufferedFileWriter<Record>& recordWriter);
 
+	void _displayUserMenu();
 public:
 	ExternalSort();
 	~ExternalSort();

@@ -35,21 +35,21 @@ private:
 	size_t _sortPhases = 0;
 
 public:
-	void registerRead() {
-		_pagesRead++;
+	void registerRead(int count = 1) {
+		_pagesRead += count;
 	}
 
-	void registerWrite() {
-		_pagesWritten++;
+	void registerWrite(int count = 1) {
+		_pagesWritten += count;
 	}
 
-	void registerNextSortPhase() {
+	void registerSortPhase() {
 		_sortPhases++;
 	}
 
-	void print(std::ostream& stream) {
+	void print(std::ostream& stream) const{
 		stream << "STATISTICS\n"
-			<< "Sort phases: " << _sortPhases << "\n"
+			<< "Sort phase: " << _sortPhases << "\n"
 			<< "Pages written: " << _pagesWritten << "\n"
 			<< "Pages read: " << _pagesRead << "\n"
 			<< "Total disk operations: " << _pagesWritten + _pagesRead << std::endl;

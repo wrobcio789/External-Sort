@@ -20,5 +20,6 @@ public:
 	File* getOperationalInput();
 
 	void swap();
+	void flush();
 };
 

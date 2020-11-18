@@ -54,6 +54,9 @@
     <ClCompile Include="src\common\model\RecordComparators.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\generator\RecordGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="model\Record.h">
@@ -123,6 +126,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\common\io\BufferedFileWriter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\generator\RecordGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

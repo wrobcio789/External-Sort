@@ -14,10 +14,13 @@ void PrettyOutput::print(const std::string& filename)
 	std::ifstream input(filename, std::ios_base::binary);
 
 	if (output.is_open() && input.is_open())
-		_printUnchecked(recordPrinter, input, output);
+		print(recordPrinter, input, output);
+
+	output.close();
+	input.close();
 }
 
-void PrettyOutput::_printUnchecked(const SingleRecordPrinter& recordPrinter, std::ifstream& input, std::ofstream& output) {
+void PrettyOutput::print(const SingleRecordPrinter& recordPrinter, std::ifstream& input, std::ofstream& output) {
 	recordPrinter.initStreams(input, output);
 	while (input.peek() != EOF) {
 		recordPrinter.print(input, output);

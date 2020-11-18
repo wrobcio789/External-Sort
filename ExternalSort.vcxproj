@@ -149,6 +149,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\generator\RecordGenerator.cpp" />
     <ClCompile Include="src\sorting\Sorting.cpp" />
     <ClCompile Include="src\common\config\ArgsParser.cpp" />
     <ClCompile Include="src\sorting\BufferToSeriesSplitter.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="src\sorting\TapeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\generator\RecordGenerator.h" />
     <ClInclude Include="src\common\io\BufferedFileWriter.h" />
     <ClInclude Include="src\sorting\Sorting.h" />
     <ClInclude Include="src\common\config\ArgsParser.h" />

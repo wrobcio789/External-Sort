@@ -17,8 +17,6 @@ int runProgram(Subprogram* program) {
 
 int main(int n, char* args[])
 {
-    std::cout << std::filesystem::current_path()<< std::endl;
-
     LocatorConfigurator::configure(n, args);
     return runProgram(Locator::get().program.get());
 }

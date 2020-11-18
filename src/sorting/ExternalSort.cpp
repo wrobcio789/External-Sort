@@ -2,10 +2,11 @@
 #include "../common/model/Record.h"
 #include "../common/model/RecordComparators.h"
 #include "../common/io/File.h"
+#include "../common/io/printers/PrettyOutput.h"
 #include "BufferToSeriesSplitter.h"
 
 ExternalSort::ExternalSort()
-	: _config(Locator::get().config) {
+	: _config(Locator::get().config), _statistics(Locator::get().statistics){
 
 	const size_t mainBufferSize = (_config.pageSize * _config.bufferCount / sizeof(Record)) * sizeof(Record);
 	char* mainBufferPtr = new char[mainBufferSize];
@@ -24,6 +25,9 @@ size_t ExternalSort::_firstStageSort()
 		_createSingleSeries();
 		totalReadBytes += _mainBuffer.size;
 	} while (_mainBuffer.size == _mainBuffer.maxSize);
+
+	_statistics.registerSortPhase();
+	_displayUserMenu();
 
 	return totalReadBytes / sizeof(Record);
 }
@@ -49,6 +53,9 @@ void ExternalSort::_secondStageSort(size_t recordsCount) {
 		_tapeManager.swap();
 		_mergeSeries(splitter, outputBuffer, seriesSizeInRecords);
 		seriesSizeInRecords *= mergingBuffersCount;
+
+		_statistics.registerSortPhase();
+		_displayUserMenu();
 	}
 }
 
@@ -86,3 +93,21 @@ void ExternalSort::Sort()
 	_secondStageSort(totalRecordsCount);
 }
 
+void ExternalSort::_displayUserMenu() {
+	_statistics.print(std::cout);
+
+	if (_config.isInteractive) {
+		_tapeManager.flush();
+		std::cout << "'p' to print, 'n' to continue\n";
+		char option;
+		while ((option = std::cin.get()) != 'n') {
+			if (option == 'p') {
+				std::string filename = _tapeManager.getOperationalOutput()->getName();
+				std::cout << "Pretty printing file: " << filename << std::endl;
+				PrettyOutput::print(filename);
+				std::cout << "Printed" << std::endl;
+				break;
+			}
+		}
+	}
+}

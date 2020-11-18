@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <exception>
+#include "../config/Locator.h"
 #include "../model/Buffer.h"
 
 class CannotOpenFileException : public std::exception {
@@ -21,6 +22,8 @@ private:
 	std::string _name;
 	std::fstream _fileStream;
 
+	Statistics& _statistics;
+
 public:
 	enum OpenMode {
 		READ = std::fstream::in | std::fstream::binary,
@@ -33,11 +36,11 @@ public:
 	~File();
 
 	void write(const CharBuffer& buffer);
-
 	size_t read(CharBuffer& buffer);
-
 	size_t rangedRead(CharBuffer& buffer, size_t begin, size_t end);
 
 	void reset();
+
+	void flush();
 };
 
