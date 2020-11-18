@@ -3,9 +3,9 @@
 #include <cassert>
 #include "../config/Locator.h"
 
-int _calculatePages(int size) {
-	const int pageSize = Locator::get().config.pageSize;
-	return (size + pageSize - 1) / pageSize;
+int _calculatePages(size_t size) {
+	const size_t pageSize = Locator::get().config.pageSize;
+	return static_cast<int>((size + pageSize - 1) / pageSize);
 }
 
 File::File(std::string filename, OpenMode mode)

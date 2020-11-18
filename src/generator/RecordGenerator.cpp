@@ -18,7 +18,6 @@ RecordGenerator::RecordGenerator(const ArgsParser& args)
 
 	_config.outputFilename = args.getValue("output").asString();
 	_config.recordsCount = args.getValue("n").asLongLong();
-	_config.pageSize = 1;
 }
 
 void RecordGenerator::run() {

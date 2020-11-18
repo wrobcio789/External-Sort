@@ -1,6 +1,7 @@
 #include "LocatorConfigurator.h"
 #include "../../sorting/Sorting.h"
 #include "../../generator/RecordGenerator.h"
+#include "../../user_input/UserInput.h"
 
 void LocatorConfigurator::configure(int argsCount, char* args[]) {
 	Locator& locator = Locator::get();
@@ -15,6 +16,6 @@ void LocatorConfigurator::_registerProgram(Locator& locator, const ArgsParser& a
 		locator.program = std::make_unique<Sorting>(argsParser);
 	else if (subprogramName == "generate")
 		locator.program = std::make_unique<RecordGenerator>(argsParser);
-	else if (subprogramName == "userinput")
-		return;
+	else if (subprogramName == "manual")
+		locator.program = std::make_unique<UserInput>(argsParser);
 }

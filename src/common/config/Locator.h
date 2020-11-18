@@ -19,7 +19,7 @@ public:
 	//Sorting:
 	bool shouldPrettyPrint = false;
 	bool isInteractive = false;
-	size_t pageSize = 0;
+	size_t pageSize = 1;
 	size_t bufferCount = 0;
 	std::string inputFilename;
 	std::string prettyFileSuffix;

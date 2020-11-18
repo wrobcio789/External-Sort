@@ -163,6 +163,7 @@
     <ClCompile Include="src\common\model\RecordComparators.cpp" />
     <ClCompile Include="src\sorting\ExternalSort.cpp" />
     <ClCompile Include="src\sorting\TapeManager.cpp" />
+    <ClCompile Include="src\user_input\UserInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\generator\RecordGenerator.h" />
@@ -189,6 +190,7 @@
     <ClInclude Include="src\sorting\ExternalSort.h" />
     <ClInclude Include="src\sorting\TapeManager.h" />
     <ClInclude Include="src\common\Subprogram.h" />
+    <ClInclude Include="src\user_input\UserInput.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\input10.bin" />
